@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "bllryclient",
+  "version": "${version}",
+
+  "name": "Bllry Client",
+  "description": "A custom Minecraft client",
+  "authors": [
+    "Your Name"
+  ],
+  "contact": {
+    "homepage": "https://github.com/yourusername/bllryclient",
+    "sources": "https://github.com/yourusername/bllryclient"
+  },
+
+  "license": "MIT",
+  "icon": "assets/bllryclient/icon.png",
+
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "com.bllry.client.ClientInitializer"
+    ]
+  },
+  "mixins": [
+    "bllryclient.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.14.9",
+    "fabric": "*",
+    "minecraft": "1.19.x",
+    "java": ">=17"
+  }
+}

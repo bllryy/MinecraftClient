@@ -1,0 +1,1 @@
+rootProject.name = "mc-client-2"
