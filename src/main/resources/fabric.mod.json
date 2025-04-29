@@ -1,35 +1,44 @@
 {
-  "schemaVersion": 1,
-  "id": "bllryclient",
-  "version": "${version}",
-
-  "name": "Bllry Client",
-  "description": "A custom Minecraft client",
-  "authors": [
-    "Your Name"
-  ],
-  "contact": {
-    "homepage": "https://github.com/yourusername/bllryclient",
-    "sources": "https://github.com/yourusername/bllryclient"
-  },
-
-  "license": "MIT",
-  "icon": "assets/bllryclient/icon.png",
-
-  "environment": "client",
-  "entrypoints": {
-    "main": [
-      "com.bllry.client.ClientInitializer"
-    ]
-  },
-  "mixins": [
-    "bllryclient.mixins.json"
-  ],
-
-  "depends": {
-    "fabricloader": ">=0.14.9",
-    "fabric": "*",
-    "minecraft": "1.19.x",
-    "java": ">=17"
-  }
+	"schemaVersion": 1,
+	"id": "bllryclient",
+	"version": "${version}",
+	"name": "bllryClient",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/bllryclient/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.example.BllryClient"
+		],
+		"client": [
+			"com.example.BllryClientClient"
+		],
+		"fabric-datagen": [
+			"com.example.BllryClientDataGenerator"
+		]
+	},
+	"mixins": [
+		"bllryclient.mixins.json",
+		{
+			"config": "bllryclient.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.16.14",
+		"minecraft": "~1.21.4",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
 }
