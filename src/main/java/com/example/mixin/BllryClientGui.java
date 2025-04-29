@@ -1,30 +1,29 @@
 package com.example.mixin;
 
+import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.Text;
 
-
 public class BllryClientGui extends Screen {
+
     private static final int BUTTON_WIDTH = 120;
     private static final int BUTTON_HEIGHT = 20;
     private static final int PADDING = 10;
-
-
-     // Main GUI screen for your client that will contain module buttons
 
     public BllryClientGui() {
         super(Text.literal("Bllry Client"));
     }
 
-    protected void int() {
+    @Override
+    protected void init() {
         super.init();
 
-        // calcuaalte pos for the layout
+        // Calculate positions for centered layout
         int startY = 50;
-        int startX = this.width / 2;
+        int centerX = this.width / 2;
 
-        // temp module button before I can add other modules
+        // Add example module buttons
         this.addDrawableChild(new ButtonWidget.Builder(
                 Text.literal("Speed Module"),
                 button -> toggleModule("Speed"),
@@ -40,15 +39,28 @@ public class BllryClientGui extends Screen {
                 .build());
     }
 
-    private void int toggleModule(String moduleName) {
-        // Here you would toggle the state of the module
-        System.out.println("Toggled " + moduleName + " module");
-
-        // In a real implementation, you would modify the module state
-        // For example: moduleManager.getModule(moduleName).toggle();
-
+    private void toggleModule(String moduleName) {
+        // Call the client's toggle method
+        if (BllryClient.INSTANCE != null) {
+            BllryClient.INSTANCE.toggleModule(moduleName);
+        } else {
+            System.out.println("Client instance is null!");
+        }
     }
+
+    @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        
+        this.renderBackground(context);
+
+        // Draw title
+        context.drawCenteredTextWithShadow(this.textRenderer, this.title, this.width / 2, 20, 0xFFFFFF);
+
+        super.render(context, mouseX, mouseY, delta);
+    }
+
+    @Override
+    public boolean shouldPause() {
+        // Setting to false allows the game to continue running when the GUI is open
+        return false;
     }
 }
