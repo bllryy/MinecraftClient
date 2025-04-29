@@ -1,4 +1,4 @@
-package com.example.mixin;
+package com.example;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
@@ -13,37 +13,85 @@ public class BllryClient {
 	public static BllryClient INSTANCE;
 
 	// Key binding for GUI
-	public static KeyBinding GUI_KEY_BINDING;
+	private KeyBinding guiKeyBinding;
 
-	// Constructor
-	public BllryClient() {
-		INSTANCE = this;
-	}
+	// Module states (can be expanded later)
+	private boolean speedModuleEnabled = false;
+	private boolean flyModuleEnabled = false;
 
-	// Initialization method
+	// Initialize the client
 	public void init() {
-		System.out.println("Initializing BllryClient...");
+		System.out.println("Setting up Bllry Client components...");
 
-		// Register the key binding
-		GUI_KEY_BINDING = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+		// Register the key binding for GUI
+		guiKeyBinding = KeyBindingHelper.registerKeyBinding(new KeyBinding(
 				"key.bllryclient.open_gui",
 				InputUtil.Type.KEYSYM,
-				GLFW.GLFW_KEY_G,
+				GLFW.GLFW_KEY_G, // G key by default
 				"category.bllryclient"
 		));
 
 		// Register client tick event to check for key presses
 		ClientTickEvents.END_CLIENT_TICK.register(client -> {
 			// Check if GUI key is pressed
-			if (GUI_KEY_BINDING.wasPressed()) {
+			if (guiKeyBinding.wasPressed()) {
 				MinecraftClient.getInstance().setScreen(new BllryClientGui());
+			}
+
+			// Handle module logic when enabled
+			if (speedModuleEnabled) {
+				handleSpeedModule();
+			}
+
+			if (flyModuleEnabled) {
+				handleFlyModule();
 			}
 		});
 	}
 
-	// Module toggle method (placeholder for now)
+	// Toggle a module by name
 	public void toggleModule(String moduleName) {
-		System.out.println("Toggled module: " + moduleName);
-		// Module functionality will be implemented later
+		switch (moduleName.toLowerCase()) {
+			case "speed":
+				speedModuleEnabled = !speedModuleEnabled;
+				System.out.println("Speed module: " + (speedModuleEnabled ? "ENABLED" : "DISABLED"));
+				break;
+			case "fly":
+				flyModuleEnabled = !flyModuleEnabled;
+				System.out.println("Fly module: " + (flyModuleEnabled ? "ENABLED" : "DISABLED"));
+				break;
+			default:
+				System.out.println("Unknown module: " + moduleName);
+				break;
+		}
+	}
+
+	// Get module state
+	public boolean isModuleEnabled(String moduleName) {
+		switch (moduleName.toLowerCase()) {
+			case "speed":
+				return speedModuleEnabled;
+			case "fly":
+				return flyModuleEnabled;
+			default:
+				return false;
+		}
+	}
+
+	// Module implementations (placeholder)
+	private void handleSpeedModule() {
+		// Example implementation - increase player movement speed
+		// This is just a placeholder - real implementation would modify player movement
+		if (MinecraftClient.getInstance().player != null) {
+			// Implementation would go here
+		}
+	}
+
+	private void handleFlyModule() {
+		// Example implementation - enable player flight
+		// This is just a placeholder - real implementation would modify player abilities
+		if (MinecraftClient.getInstance().player != null) {
+			// Implementation would go here
+		}
 	}
 }
