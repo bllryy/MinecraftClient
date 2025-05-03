@@ -1,7 +1,7 @@
 {
   "required": true,
   "minVersion": "0.8",
-  "package": "me.alpha432.oyvey.mixin",
+  "package": "me.bllry.client.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "me.bllry.client.mixin.MixinClientConnection"
