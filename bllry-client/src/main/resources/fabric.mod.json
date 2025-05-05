@@ -14,7 +14,7 @@
   },
   "license": "MIT",
   "environment": "client",
-  "accessWidener": "bllry.accesswidener",
+  "accessWidener": "oyvey.accesswidener",
   "entrypoints": {
     "client": [
       "me.bllry.client.bllry"

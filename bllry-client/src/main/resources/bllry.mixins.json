@@ -4,15 +4,15 @@
   "package": "me.bllry.client.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "me.bllry.client.mixin.MixinClientConnection"
+    "MixinClientConnection"
   ],
   "client": [
-    "me.bllry.client.mixin.MixinClientPlayerEntity",
-    "me.bllry.client.mixin.MixinClientPlayNetworkHandler",
-    "me.bllry.client.mixin.MixinInGameHud",
-    "me.bllry.client.mixin.MixinKeyboard",
-    "me.bllry.client.mixin.MixinRenderTickCounter",
-    "me.bllry.client.mixin.MixinWorldRenderer"
+    "MixinClientPlayerEntity",
+    "MixinClientPlayNetworkHandler",
+    "MixinInGameHud",
+    "MixinKeyboard",
+    "MixinRenderTickCounter",
+    "MixinWorldRenderer"
   ],
   "injectors": {
     "defaultRequire": 1

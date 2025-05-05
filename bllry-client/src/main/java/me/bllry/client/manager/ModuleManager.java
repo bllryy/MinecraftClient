@@ -8,12 +8,6 @@ import me.bllry.client.features.Feature;
 import me.bllry.client.features.modules.Module;
 import me.bllry.client.features.modules.client.ClickGui;
 import me.bllry.client.features.modules.client.HudModule;
-import me.bllry.client.features.modules.combat.Criticals;
-import me.bllry.client.features.modules.misc.MCF;
-import me.bllry.client.features.modules.movement.ReverseStep;
-import me.bllry.client.features.modules.movement.Step;
-import me.bllry.client.features.modules.player.FastPlace;
-import me.bllry.client.features.modules.player.NoFall;
 import me.bllry.client.features.modules.player.Velocity;
 import me.bllry.client.features.modules.render.BlockHighlight;
 import me.bllry.client.util.traits.Jsonable;
@@ -33,14 +27,14 @@ public class ModuleManager implements Jsonable, Util {
     public void init() {
         modules.add(new HudModule());
         modules.add(new ClickGui());
-        modules.add(new Criticals());
-        modules.add(new MCF());
-        modules.add(new Step());
-        modules.add(new ReverseStep());
-        modules.add(new FastPlace());
+        // modules.add(new Criticals());
+        // modules.add(new MCF());
+        // modules.add(new Step());
+        // modules.add(new ReverseStep());
+        // modules.add(new FastPlace());
         modules.add(new Velocity());
         modules.add(new BlockHighlight());
-        modules.add(new NoFall());
+        // modules.add(new NoFall());
     }
 
     public Module getModuleByName(String name) {
