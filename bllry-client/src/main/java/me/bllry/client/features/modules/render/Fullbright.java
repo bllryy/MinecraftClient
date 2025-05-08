@@ -44,7 +44,7 @@ public class Fullbright extends Module {
                 }
                 break;
             case Luminance:
-                // Reload renderer if available
+                // reload renderer if available
                 if (mc.worldRenderer != null) {
                     mc.worldRenderer.reload();
                 }
@@ -62,7 +62,7 @@ public class Fullbright extends Module {
                 disableNightVision();
                 break;
             case Luminance:
-                // Reload renderer to reset lighting
+                // reload renderer to reset lighting
                 if (mc.worldRenderer != null) {
                     mc.worldRenderer.reload();
                 }
@@ -73,7 +73,7 @@ public class Fullbright extends Module {
     @Override
     public void onUpdate() {
         if (mode.getValue() == Mode.Potion && mc.player != null) {
-            // Apply night vision effect continuously
+            // night vision effect continuously
             StatusEffectInstance nightVision = mc.player.getStatusEffect(StatusEffects.NIGHT_VISION);
             if (nightVision == null || nightVision.getDuration() < 210) {
                 mc.player.addStatusEffect(new StatusEffectInstance(StatusEffects.NIGHT_VISION, 420, 0, false, false));
@@ -100,7 +100,7 @@ public class Fullbright extends Module {
         if (!this.isEnabled()) return;
 
         // If using Luminance mode and event light type matches our setting
-        if (mode.getValue() == Mode.Luminance && event.getLightType() == lightType.getValue()) {
+        if (mode.getValue() == Mode.Luminance && event.getType() == lightType.getValue()) {
             int currentLevel = event.getLightLevel();
             int minLevel = minimumLightLevel.getValue();
 
