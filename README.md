@@ -1,6 +1,2 @@
-# Removed Items
-- FastPlace
-- NoFall
-- Everything in movement
-- Everything in misc
-- Everything in Criticals
+# Bllry-Client
+- Fork of OyVey and some others

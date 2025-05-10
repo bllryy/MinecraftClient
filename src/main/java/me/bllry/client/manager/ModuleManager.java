@@ -11,6 +11,7 @@ import me.bllry.client.features.modules.client.HudModule;
 import me.bllry.client.features.modules.player.Velocity;
 import me.bllry.client.features.modules.render.BlockHighlight;
 import me.bllry.client.features.modules.render.Fullbright;
+import me.bllry.client.features.modules.misc.PearlNotify;
 import me.bllry.client.util.traits.Jsonable;
 import me.bllry.client.util.traits.Util;
 
@@ -36,6 +37,7 @@ public class ModuleManager implements Jsonable, Util {
         modules.add(new Velocity());
         modules.add(new BlockHighlight());
         modules.add(new Fullbright());
+        modules.add(new PearlNotify());
         // modules.add(new NoFall());
     }
 
