@@ -8,6 +8,7 @@ import me.bllry.client.features.Feature;
 import me.bllry.client.features.modules.Module;
 import me.bllry.client.features.modules.client.ClickGui;
 import me.bllry.client.features.modules.client.HudModule;
+import me.bllry.client.features.modules.misc.DiscordPresence;
 import me.bllry.client.features.modules.player.Velocity;
 import me.bllry.client.features.modules.render.BlockHighlight;
 import me.bllry.client.features.modules.render.Fullbright;
@@ -33,7 +34,7 @@ public class ModuleManager implements Jsonable, Util {
         // modules.add(new MCF());
         // modules.add(new Step());
         // modules.add(new ReverseStep());
-        // modules.add(new FastPlace());
+        modules.add(new DiscordPresence());
         modules.add(new Velocity());
         modules.add(new BlockHighlight());
         modules.add(new Fullbright());

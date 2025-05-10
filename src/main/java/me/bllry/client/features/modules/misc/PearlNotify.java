@@ -1,27 +1,25 @@
 package me.bllry.client.features.modules.misc;
 
-
-import com.mojang.realmsclient.gui.ChatFormatting;
 import me.bllry.client.features.commands.Command;
 import me.bllry.client.features.modules.Module;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityEnderPearl;
-import net.minecraft.entity.player.EntityPlayer;
-
-
-
+import net.minecraft.entity.EntityType;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.thrown.EnderPearlEntity;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 
 import java.util.HashMap;
 import java.util.UUID;
 
 public class PearlNotify extends Module {
-    private final HashMap<EntityPlayer, UUID> list;
+    private final HashMap<PlayerEntity, UUID> list;
     private Entity enderPearl;
     private boolean flag;
 
     public PearlNotify() {
         super("PearlNotify", "Notify pearl throws.", Category.MISC, true, false, false);
-        this.list = new HashMap<EntityPlayer, UUID>();
+        this.list = new HashMap<PlayerEntity, UUID>();
     }
 
     @Override
@@ -31,12 +29,12 @@ public class PearlNotify extends Module {
 
     @Override
     public void onUpdate() {
-        if (PearlNotify.mc.world == null || PearlNotify.mc.player == null) {
+        if (mc.world == null || mc.player == null) {
             return;
         }
         this.enderPearl = null;
-        for (final Entity e : PearlNotify.mc.world.loadedEntityList) {
-            if (e instanceof EntityEnderPearl) {
+        for (final Entity e : mc.world.getEntities()) {
+            if (e instanceof EnderPearlEntity) {
                 this.enderPearl = e;
                 break;
             }
@@ -45,28 +43,34 @@ public class PearlNotify extends Module {
             this.flag = true;
             return;
         }
-        EntityPlayer closestPlayer = null;
-        for (final EntityPlayer entity : PearlNotify.mc.world.playerEntities) {
+        PlayerEntity closestPlayer = null;
+        for (final PlayerEntity entity : mc.world.getPlayers()) {
             if (closestPlayer == null) {
                 closestPlayer = entity;
             } else {
-                if (closestPlayer.getDistance(this.enderPearl) <= entity.getDistance(this.enderPearl)) {
+                if (closestPlayer.distanceTo(this.enderPearl) <= entity.distanceTo(this.enderPearl)) {
                     continue;
                 }
                 closestPlayer = entity;
             }
         }
-        if (closestPlayer == PearlNotify.mc.player) {
+        if (closestPlayer == mc.player) {
             this.flag = false;
         }
         if (closestPlayer != null && this.flag) {
-            String faceing = this.enderPearl.getHorizontalFacing().toString();
-            if (faceing.equals("west")) {
-                faceing = "east";
-            } else if (faceing.equals("east")) {
-                faceing = "west";
+            String facing = this.enderPearl.getHorizontalFacing().toString();
+            if (facing.equals("west")) {
+                facing = "east";
+            } else if (facing.equals("east")) {
+                facing = "west";
             }
-            Command.sendMessage(bllry.friendManager.isFriend(closestPlayer.getName()) ? (ChatFormatting.AQUA + closestPlayer.getName() + ChatFormatting.DARK_GRAY + " has just thrown a pearl heading " + faceing + "!") : (ChatFormatting.RED + closestPlayer.getName() + ChatFormatting.DARK_GRAY + " has just thrown a pearl heading " + faceing + "!"));
+
+            String playerName = closestPlayer.getName().getString();
+            String message;
+            message = Formatting.LIGHT_PURPLE + playerName + Formatting.DARK_GRAY + " has just thrown a pearl heading " + facing + "!";
+
+
+            Command.sendMessage(message);
             this.flag = false;
         }
     }
