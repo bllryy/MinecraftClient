@@ -13,6 +13,7 @@ import me.bllry.client.features.modules.player.Velocity;
 import me.bllry.client.features.modules.render.BlockHighlight;
 import me.bllry.client.features.modules.render.Fullbright;
 import me.bllry.client.features.modules.misc.PearlNotify;
+import me.bllry.client.features.modules.combat.Criticals;
 import me.bllry.client.util.traits.Jsonable;
 import me.bllry.client.util.traits.Util;
 
@@ -30,7 +31,7 @@ public class ModuleManager implements Jsonable, Util {
     public void init() {
         modules.add(new HudModule());
         modules.add(new ClickGui());
-        // modules.add(new Criticals());
+        modules.add(new Criticals());
         // modules.add(new MCF());
         // modules.add(new Step());
         // modules.add(new ReverseStep());
